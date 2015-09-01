@@ -1,6 +1,6 @@
 # Appcelerator Cache Client library [![Build Status](https://travis-ci.org/appcelerator/appc-cache.svg?branch=master)](https://travis-ci.org/appcelerator/appc-cache)
 
-The library makes it easy to use the Appcelerator Cache Server.
+The library makes it easy to use the Appcelerator Cache API Service.
 
 ## Installation
 
