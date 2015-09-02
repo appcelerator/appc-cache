@@ -18,7 +18,7 @@ var Cache = require('appc-cache'),
     });
 ```
 
-Once you have created the client instance, you can use it.
+Once you have created the client instance, you can use it.  This library is (generally) compatible with the [Redis API](http://redis.io/commands).
 
 ```javascript
 cache.set('key', 'value', function (err) {
@@ -28,18 +28,41 @@ cache.set('key', 'value', function (err) {
 cache.get('key', function (err, value) {
     console.log('cached value is', value);
 });
+```
 
-cache.set('key', 'value', 10000, function (err) {
-    // set the value and auto expire in 10s
-});
+## Using as a Express Session Store
 
-cache.expire('key', function (err) {
-    // expire key
-});
+This library provides an Express compatible session store implementation.  Example usage:
 
-cache.ttl('key', 20000, function (err) {
-    // update the expiration ttl for key to 20s
-});
+```javascript
+var app = express(),
+    session = require('express-session'),
+    Cache = require('appc-cache'),
+    CacheStore = Cache.createSessionStore(session),
+    options = {
+        key: 'mykey',
+        secret: 'mysecret',
+        ttl: 2000
+    };
+app.use(session({
+    store: new CacheStore(options),
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+```
+
+## APIs that are not supported
+
+There are a number of APIs that are not support or not allowed. For example, this library does not support `eval` or `exec`.
+For a full list of commands, see the file `lib/blacklist.js`.
+
+## Running the Unit Tests
+
+You can run the unit tests by setting the value of the following environment variables `APPC_TEST_KEY` and `APPC_TEST_SECRET` to the values to use for caching. For example:
+
+```
+APPC_TEST_KEY=kkkkkkkkkkkkkkkkkkkkkkkkk APPC_TEST_SECRET=ssssssssssssssssssssssss grunt
 ```
 
 ## License
