@@ -13,6 +13,7 @@ describe('redis', function () {
 		client.echo('OK', function (err, reply) {
 			should(err).not.be.ok;
 			should(reply).be.equal('OK');
+			should(client.connected).be.true;
 			client.end(done);
 		});
 	});

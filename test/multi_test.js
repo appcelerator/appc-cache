@@ -59,4 +59,35 @@ describe('keys', function () {
 		cache.multi().echo('OK').exec(done);
 	});
 
+	it('supports multi with multi replies', function (done) {
+		var multi = cache.multi();
+		cache.multi().echo('1').echo('2').echo('3').exec(function (err, replies) {
+			should(err).be.not.ok;
+			should(replies).be.an.array;
+			should(replies).have.length(3);
+			should(replies[0]).be.equal('1');
+			should(replies[1]).be.equal('2');
+			should(replies[2]).be.equal('3');
+			done();
+		});
+	});
+
+	it('supports multi with multi replies with cb', function (done) {
+		var multi = cache.multi(),
+			counter = 0,
+			cb = function () {
+				counter++;
+			};
+		cache.multi().echo('1', cb).echo('2', cb).echo('3', cb).exec(function (err, replies) {
+			should(err).be.not.ok;
+			should(replies).be.an.array;
+			should(replies).have.length(3);
+			should(replies[0]).be.equal('1');
+			should(replies[1]).be.equal('2');
+			should(replies[2]).be.equal('3');
+			should(counter).be.equal(3);
+			done();
+		});
+	});
+
 });
