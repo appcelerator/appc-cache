@@ -1,6 +1,6 @@
 # Appcelerator Cache Client library [![Build Status](https://travis-ci.org/appcelerator/appc-cache.svg?branch=master)](https://travis-ci.org/appcelerator/appc-cache)
 
-The library makes it easy to use the Appcelerator Cache API Service.
+The library makes it easy to use the Appcelerator Cache API Service. This library is meant to act as a drop-in replacement for the [Node Redis Client Library](https://github.com/NodeRedis/node_redis).
 
 ## Installation
 
@@ -30,7 +30,23 @@ cache.get('key', function (err, value) {
 });
 ```
 
-## Using as a Express Session Store
+## Redis Client emulation
+
+This library emulates the same API as the redis client.  For example:
+
+```javascript
+var redis = require('appc-cache');
+var client = redis.createClient({
+    key: 'key'
+});
+client.auth('secret');
+var multi = client.multi();
+multi.echo('OK', redis.print);
+multi.exec();
+```
+
+
+## Using as an Express Session Store
 
 This library provides an Express compatible session store implementation.  Example usage:
 
