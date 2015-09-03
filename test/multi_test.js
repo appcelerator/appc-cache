@@ -53,4 +53,10 @@ describe('keys', function () {
 		});
 	});
 
+	it('supports multi with chaining', function (done) {
+		var multi = cache.multi();
+		var responses = [];
+		cache.multi().echo('OK').exec(done);
+	});
+
 });

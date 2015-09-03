@@ -35,6 +35,14 @@ describe('keys', function () {
 		});
 	});
 
+	it('supports set / get chaining', function (done) {
+		cache.set('test.get','1').get('test.get', function (err, result) {
+			if (err) { return done(err); }
+			should(result).be.undefined;
+			done();
+		});
+	});
+
 	it('supports set as string', function (done) {
 		var key = 'test.get.' + Date.now();
 		cache.set(key, '1', function (err, result) {
