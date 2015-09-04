@@ -68,6 +68,26 @@ app.use(session({
 }));
 ```
 
+## Using Distributed Locks
+
+This library supports distributed locks.  With a distributed lock, only one client can acquire a named lock at a time for a specified duration.
+
+```javascript
+cache.lock('my.lock', 10000, function (err, lock) {
+    cache.unlock(lock);
+});
+```
+
+You can extend the lock with the `extend` method. For example:
+
+```javascript
+cache.lock('my.lock', 10000, function (err, lock) {
+    // extend the lock another 10 sec
+    cache.extend(lock, 10000);
+    cache.unlock(lock);
+});
+```
+
 ## APIs that are not supported
 
 There are a number of APIs that are not support or not allowed. For example, this library does not support `shutdown`. For a full list of commands, see the file `lib/blacklist.js`.
