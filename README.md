@@ -70,8 +70,7 @@ app.use(session({
 
 ## APIs that are not supported
 
-There are a number of APIs that are not support or not allowed. For example, this library does not support `eval` or `exec`.
-For a full list of commands, see the file `lib/blacklist.js`.
+There are a number of APIs that are not support or not allowed. For example, this library does not support `shutdown`. For a full list of commands, see the file `lib/blacklist.js`.
 
 ## Running the Unit Tests
 

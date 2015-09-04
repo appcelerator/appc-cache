@@ -2,7 +2,7 @@ var should = require('should'),
 	Cache = require('../'),
 	cache;
 
-describe('keys', function () {
+describe('multi', function () {
 	this.timeout(10000);
 
 	before(function (done) {
