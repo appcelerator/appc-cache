@@ -3,13 +3,13 @@ var should = require('should'),
 	cache;
 
 describe('eval', function () {
-	this.timeout(10000);
+	this.timeout(100000);
 
 	before(function (done) {
 		cache = new Cache({
 			key: process.env.APPC_TEST_KEY,
 			secret: process.env.APPC_TEST_SECRET,
-			url: process.env.APPC_TEST_URL || 'https://360-local.cloud.appctest.com:8445'
+			url: process.env.APPC_TEST_URL || 'https://local.cloud.appctest.com:8445'
 		});
 		// delete all the keys before starting
 		cache.flushdb(done);

@@ -8,7 +8,7 @@ describe('redis', function () {
 		var client = redis.createClient({
 			key: process.env.APPC_TEST_KEY,
 			secret: process.env.APPC_TEST_SECRET,
-			url: process.env.APPC_TEST_URL || 'https://360-local.cloud.appctest.com:8445'
+			url: process.env.APPC_TEST_URL || 'https://local.cloud.appctest.com:8445'
 		});
 		client.echo('OK', function (err, reply) {
 			should(err).not.be.ok;

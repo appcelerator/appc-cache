@@ -1,6 +1,6 @@
 {
   "name": "appc-cache",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "AppC cache client library",
   "main": "index.js",
   "scripts": {
